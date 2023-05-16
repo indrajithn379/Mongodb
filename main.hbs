@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indrajith</title>
+    <style>
+        #page{
+            margin-left: 550px;
+            color: red;
+            font-size: 50px;
+        }
+        #id1{
+            font-size: 20px;
+        }
+        #id2{
+            font-size: 20px;
+            margin-left: 35px;
+        }
+        #id3{
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+<body style=" background-color:wheat">
+    
+    <h1 id="page">The Grocery Store</h1>
+    {{message}}
+    <br>
+    {{#if edit_id}}
+     <h1>Edit</h1>
+    <form method="post" action="/update_item/{{edit_id}}">
+        <label for="">Item name:</label>
+        <input type="text" name="title" value="{{edit_item.title}}">
+        <label for="">Price:</label>
+        <input type="text" name="Author" value="{{edit_item.Author}}">
+        <input type="submit" >
+    </form><br><br>
+    {{else}}
+
+    <h1>Create</h1>
+    <form method="post" action="/store_item">
+        <label for="">Item name:</label>
+        <input id="id1" type="text" name="title"><br><br>
+        <label for="">Price:</label>
+        <input id="id2" type="text" name="author"><br><br>
+        <input  id="id3" type="submit" >
+    </form><br><br>
+
+   {{/if}}
+
+    <ul>
+        {{#each items}}
+        <li> {{this.title}} - {{this.author}}  <a href="/?edit_id={{this._id}}">Edit</a>  <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure want to delete?')" >Delete</a></li>
+        {{/each}}
+    </ul>
+
+</body>
+</html>
